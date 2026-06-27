@@ -1,7 +1,8 @@
 import {
   List, Datagrid, TextField, UrlField, ImageField,
   Create, Edit, SimpleForm,
-  TextInput, required, useRecordContext
+  TextInput, required, useRecordContext,
+  ReferenceArrayInput, SelectArrayInput
 } from 'react-admin'
 import { useState } from 'react'
 
@@ -31,7 +32,6 @@ const PhotoPreviewInput = () => {
               objectFit: 'cover',
               borderRadius: 8,
               border: '1px solid #ddd',
-              display: 'block'
             }}
           />
         </div>
@@ -62,6 +62,9 @@ const SpeakerForm = () => (
     <TextInput source="bio" label="Biographie" multiline rows={4} fullWidth />
     <PhotoPreviewInput />
     <TextInput source="externalLinks" label="Liens externes" fullWidth />
+    <ReferenceArrayInput source="sessionIds" reference="sessions" label="Sessions assignées">
+      <SelectArrayInput optionText="title" />
+    </ReferenceArrayInput>
   </SimpleForm>
 )
 
