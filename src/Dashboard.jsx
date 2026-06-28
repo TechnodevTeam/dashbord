@@ -28,13 +28,20 @@ export const Dashboard = () => {
   const token = localStorage.getItem('token')
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/stats', {
-      headers: { Authorization: `Bearer ${token}` }
+  const token = localStorage.getItem('token')
+  
+  if (!token) return  // ← stoppe si pas de token
+
+  fetch('http://localhost:8080/api/stats', {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+    .then(r => {
+      if (r.status === 401) throw new Error('unauthorized')
+      return r.json()
     })
-      .then(r => r.json())
-      .then(setStats)
-      .catch(console.error)
-  }, [])
+    .then(setStats)
+    .catch(console.error)
+}, [])
 
   if (!stats) return <p style={{ padding: 24 }}>Chargement des statistiques...</p>
 
