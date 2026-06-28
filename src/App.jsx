@@ -8,6 +8,8 @@ import { SessionList, SessionCreate, SessionEdit } from './resources/sessions/Se
 import { SpeakerList, SpeakerCreate, SpeakerEdit } from './resources/speakers/SpeakerList'
 import { RoomList, RoomCreate } from './resources/rooms/RoomList'
 import { QuestionList } from './resources/questions/QuestionList'
+import { UserList, UserCreate, UserEdit } from './resources/users/UserList'
+
 
 export default function App() {
   return (
@@ -22,6 +24,7 @@ export default function App() {
       <Resource name="speakers" list={SpeakerList} create={SpeakerCreate} edit={SpeakerEdit} options={{ label: 'Intervenants' }} />
       <Resource name="rooms" list={RoomList} create={RoomCreate} options={{ label: 'Salles' }} />
       <Resource name="questions" list={QuestionList} options={{ label: 'Questions' }} />
+      <Resource name="users" list={UserList} create={UserCreate} edit={UserEdit} options={{ label: 'Utilisateurs' }} />
     </Admin>
   )
 }
